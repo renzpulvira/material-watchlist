@@ -1,0 +1,19 @@
+{
+  "name": "material-watchlist",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/renzpulvira/material-watchlist.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/renzpulvira/material-watchlist/issues"
+  },
+  "homepage": "https://github.com/renzpulvira/material-watchlist#readme"
+}
