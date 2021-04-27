@@ -18,13 +18,18 @@ export default function Auth({ isSignup } = this.props) {
 
   const getPassVerify = (e) => {
     setPassVerifyInput(e);
-    if (passInput == passVerifyInput) {
-      passVerifyHasError(false);
-    }
+  };
 
-    if (passInput != passVerifyInput) {
-      passVerifyHasError(true);
+  const checkVerifiedPass = () => {
+    if (passVerifyInput === passInput) {
+      setPassVerifyHasError(false);
+    } else {
+      setPassVerifyHasError(true);
     }
+  };
+
+  const captureForm = (e) => {
+    e.preventDefault();
   };
 
   return (
@@ -58,10 +63,12 @@ export default function Auth({ isSignup } = this.props) {
             label="Confirm Password"
             type="password"
             autoComplete="current-password"
-            onChange={(e) => setPassVerifyInput(e.target.value)}
+            onChange={(e) => getPassVerify(e.target.value)}
             style={{ width: "250px", marginBottom: "30px" }}
-            // helperText={passVerifyHasError ? "Incorrect Password Inserted" : ""}
-            helperText={passVerifyHasError ? "wad" : "duhek"}
+            onBlur={checkVerifiedPass}
+            helperText={
+              !passVerifyHasError ? "" : "Please make sure your Password Match."
+            }
           />
         )}
 
