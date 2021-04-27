@@ -1,0 +1,19 @@
+.auth-container {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.auth-form {
+  display: flex;
+  padding: 30px 0;
+  width: 350px;
+  background: #ccc;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0px 2px 3px #ddd;
+}
