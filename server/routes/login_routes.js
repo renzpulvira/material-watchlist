@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/userModel");
 const bcryptjs = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 router.post("/", (req, res) => {
   let userCheck = req.body;
@@ -15,7 +16,12 @@ router.post("/", (req, res) => {
       function (err, theResult) {
         if (theResult) {
           console.log("login confirmed!");
-          return res.send();
+          // return res.send(result._id);
+          const token = jwt.sign({ _id: result._id }, process.env.JWT_SECRET, {
+            expiresIn: 300,
+          });
+
+          return res.send({ auth: true, token: token, result: result.email });
         } else {
           return res.status(500).send();
         }

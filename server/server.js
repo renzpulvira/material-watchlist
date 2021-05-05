@@ -25,4 +25,6 @@ app.get("/", (req, res) => {
 app.use("/signup", require("./routes/signup_routes"));
 app.use("/login", require("./routes/login_routes"));
 
-app.listen(process.env.SERVER_PORT, () => console.log("Server Running"));
+app.listen(process.env.SERVER_PORT, () =>
+  console.log("Server Running at " + process.env.SERVER_PORT)
+);

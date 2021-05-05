@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import { Button, Box, TextField, Typography } from "@material-ui/core";
+import Axios from "axios";
+import axios from "axios";
 
 export default function Auth({ isSignup } = this.props) {
-  const [userInput, setUserInput] = useState("");
+  const [emailInput, setEmailInput] = useState("");
   const [passInput, setPassInput] = useState("");
   const [passVerifyInput, setPassVerifyInput] = useState("");
   const [validateValidForm, setValidateValidForm] = useState(false);
   const [passVerifyHasError, setPassVerifyHasError] = useState(false);
+  const [userId, setUserId] = useState(0);
 
   const getUser = (e) => {
-    setUserInput(e);
+    setEmailInput(e);
   };
 
   const getPass = (e) => {
@@ -30,18 +33,36 @@ export default function Auth({ isSignup } = this.props) {
 
   const captureForm = (e) => {
     e.preventDefault();
+
+    axios
+      .post("http://localhost:5000/login", {
+        email: emailInput,
+        password: passInput,
+      })
+      .then((res) => {
+        console.log(res.data);
+        setUserId(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
     <Box className="auth-container">
-      <form className="auth-form" noValidate autoComplete="off">
+      <form
+        className="auth-form"
+        noValidate
+        autoComplete="off"
+        onSubmit={captureForm}
+      >
         <h1 m={0} className="auth-label" style={{ margin: "0" }}>
           {isSignup ? "Register" : "Login"}
         </h1>
         <TextField
           width={1}
           id="standard-basic"
-          label="Username"
+          label="Email"
           onChange={(e) => getUser(e.target.value)}
           style={{ width: "250px", marginBottom: "15px" }}
         />
