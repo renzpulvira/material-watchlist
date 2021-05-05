@@ -16,8 +16,7 @@ router.post("/", (req, res) => {
       function (err, theResult) {
         if (theResult) {
           console.log("login confirmed!");
-          // return res.send(result._id);
-          const token = jwt.sign({ _id: result._id }, process.env.JWT_SECRET, {
+          const token = jwt.sign({ id: result._id }, process.env.JWT_SECRET, {
             expiresIn: 300,
           });
 
